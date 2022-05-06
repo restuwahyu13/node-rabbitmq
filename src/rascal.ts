@@ -118,9 +118,9 @@ export class RabbitMQ {
 			console.info('RabbitMQ publisher is called')
 
 			publisher.on('success', (jobId: string) => console.log(`job ${jobId} is success`))
-			publisher.on('error', (_err: Error, jobId: string) => {
+			publisher.on('error', async (_err: Error, jobId: string) => {
 				console.log(`job ${jobId} is error`)
-				publisher.abort()
+				await connection.shutdown()
 			})
 
 			return true
