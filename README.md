@@ -1,6 +1,6 @@
 <img src="https://www.cloudamqp.com/img/blog/rabbitmq-beginners-updated.png" />
 
-# [What is RabbitMQ](https://www.rabbitmq.com/) ?
+# What is RabbitMQ ?
 
 **RabbitMQ** adalah salah satu platform open source message broker terpopuler selain Kafka, yang dimana RabbitMQ itu sendiri di tulis dengan bahasa pemerograman **Erlang**, RabbitMQ juga menggunakan protokol antrian seperti AMQP (advanced message query protocol) sebagai default protokolnya, RabbitMQ sendiri untuk pemerosesan queue nya menggunakan metode **First In First Out (FIFO)** yang berarti data (message) yang peratamakali masuk akan di tambahkan dan data (message) yang pertamakali masuk juga akan pertamakali keluar, oh iya RabitMQ juga menerapkan **Load Balancer** by defaut menggunakan **algorithm round robin**, contoh jika kita mempunya 2 publisher dan memiliki 1 **subsriber (A)**, maka semua data (message) akan di konsum oleh **subscriber (A)**, tetapi jika kita membuat **1 subsciber (B)** lagi, maka yang terjadi adalah **subsriber (A)** akan menghandle data (message) dari **publisher (A)** dan **subscriber (B)** akan menghandle data (message) dari **subscriber (B)**, begitu juga seterusnya.
 
