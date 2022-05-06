@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"outDir": "dist",
+		"target": "ESNext",
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"types": ["node"],
+		"strict": true,
+		"importHelpers": true,
+		"downlevelIteration": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true
+	}
+}

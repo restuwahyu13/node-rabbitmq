@@ -1,0 +1,33 @@
+{
+	"name": "node-rabbitmq",
+	"version": "1.0.0",
+	"description": "example fundamental basic rabbitmq",
+	"main": "index.js",
+	"scripts": {
+		"pub": "ts-node -T src/publisher.ts",
+		"sub": "ts-node -T src/subscriber.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/restuwahyu13/node-rabbitmq"
+	},
+	"keywords": [
+		"rabbitmq",
+		"node",
+		"rascal",
+		"typescript"
+	],
+	"author": "restuwahyu13",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv": "^16.0.0",
+		"rascal": "^14.4.1"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.31",
+		"@types/rascal": "^10.0.4",
+		"ts-node": "^10.7.0",
+		"tslib": "^2.4.0",
+		"typescript": "^4.6.4"
+	}
+}

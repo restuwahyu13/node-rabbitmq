@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  ###########################
+  # RABBITMQ SERVICES
+  ###########################
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: unless-stopped
+    healthcheck:
+      start_period: 60s
+      timeout: 120s
+      interval: 30s
+      test: ifconfig | grep broadcast
+    env_file: .env
+    environment:
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+      RABBITMQ_DEFAULT_HOST: ${RABBITMQ_DEFAULT_HOST}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/data
+      - rabbitmq_data:/var/log/rabbitmq/log
+    networks:
+      - node_networks
+  ###########################
+  # VOLUME PERSISTENT DATA
+  ###########################
+volumes:
+  rabbitmq_data:
+    ###########################
+    # NETWORK SHARING GROUP
+    ###########################
+networks:
+  node_networks:
