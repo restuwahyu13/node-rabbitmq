@@ -5,7 +5,7 @@
 **Message Queue** adalah layanan protokol komunikasi untuk **mengirim (enqueue)** dan **menerima (dequeue)** data (message) dari 1 service ke service lainnya secara bersamaan, yang dimana process dari message queue adalah async yang berarti tidak saling tunggu satu samalain, untuk protokol yang di gunakan oleh message queue seperti AMQP (Advanced Message Query Protocol), STOMP (Streaming Transfer Orientied Message Protocol) dan MQTT (Message Query Telemetry Transport), message queue juga memiliki 3 model pattern di antaranya Point To Point (P2P), Publisher & Subscriber (Pub/Sub) dan Request & Reply (R2), kalau kita amati RabbitMQ sendiri itu teryata menggunakan model pattern Pub/Sub.
 
 
- - P2P adalah model pattern message queue yang bisa mengirimkan data (message) ke satu konsumer saja, katakanlah kita punya 2 subscriber dan 1 publisher, berarti yang bisa menerima data (message) hanya subscriber 1 saja, karena sifat yang untuk berkomunikasi 1 arah.
+ - P2P adalah model pattern message queue yang bisa mengirimkan data (message) ke satu konsumer saja, katakanlah kita punya 2 subscriber dan 1 publisher, berarti yang bisa menerima data (message) hanya subscriber 1 saja, karena sifat yang berkomunikasi 1 arah.
 
  - Pub/Sub adalah model pattern message queue yang bisa mengirimkan data (message) ke banyak konsumer sekaligus, dikarenakan model pattern pub/sub ini menggunakan event untuk model berkomunikasinya, katakanlah kita punya 2 subscriber dan 1 publisher, selama kita mensubscribe event dengan nama yang sama maka kita bisa mengkonsumsi data tersebut di banyak konsumer.
 
