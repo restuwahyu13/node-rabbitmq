@@ -1,8 +1,20 @@
 <img src="https://www.cloudamqp.com/img/blog/rabbitmq-beginners-updated.png" />
 
+# What is Message Queue ?
+
+**Message Queue** adalah layanan protokol komunikasi untuk **mengirim (enqueue)** dan **menerima (dequeue)** data (message) dari 1 service ke service lainnya secara bersamaan, yang dimana process dari message queue adalah async yang berarti tidak saling tunggu satu samalain, untuk protokol yang di gunakan oleh message queue seperti AMQP (Advanced Message Query Protocol), STOMP (Streaming Transfer Orientied Message Protocol) dan MQTT (Message Query Telemetry Transport), message queue juga memiliki 3 model pattern di antaranya Point To Point (P2P), Publisher & Subscriber (Pub/Sub) dan Request & Reply (R2), kalau kita amati RabbitMQ sendiri itu teryata menggunakan model pattern Pub/Sub.
+
+
+ - P2P adalah model pattern message queue yang bisa mengirimkan data (message) ke satu konsumer saja, katakanlah kita punya 2 subscriber dan 1 publisher, berarti yang bisa menerima data (message) hanya subscriber 1 saja, karena sifat yang untuk berkomunikasi 1 arah.
+
+ - Pub/Sub adalah model pattern message queue yang bisa mengirimkan data (message) ke banyak konsumer sekaligus, dikarenakan model pattern pub/sub ini menggunakan event untuk model berkomunikasinya, katakanlah kita punya 2 subscriber dan 1 publisher, selama kita mensubscribe event dengan nama yang sama maka kita bisa mengkonsumsi data tersebut di banyak konsumer.
+
+ - Reply/Request adalah model pattern message queue ini sangat berbeda dari model message pattern lainnya, dikarenakan ketika anda mengirimkan data (message) katakanlah ke queue A , konsumer tidak bisa langsung mengkonsum data (message) tersebut secara langsung, dikarenakan butuh persetujuan terlebih dahulu dari server, ketika request yang diminta itu oke dan di setujui oleh server, maka baru server akan mengirimkan respon balikan berupa data (message) yang diminta.
+
+
 # What is RabbitMQ ?
 
-**RabbitMQ** adalah salah satu platform open source message broker terpopuler selain Kafka, yang dimana RabbitMQ itu sendiri di tulis dengan bahasa pemerograman **Erlang**, RabbitMQ juga menggunakan protokol antrian seperti AMQP (advanced message query protocol) sebagai default protokolnya, RabbitMQ sendiri untuk pemerosesan queue nya menggunakan metode **First In First Out (FIFO)** yang berarti data (message) yang peratamakali masuk akan di tambahkan dan data (message) yang pertamakali masuk juga akan pertamakali keluar, oh iya RabitMQ juga menerapkan **Load Balancer** by defaut menggunakan **algorithm round robin**, contoh jika kita mempunya 2 publisher dan memiliki 1 **subsriber (A)**, maka semua data (message) akan di konsum oleh **subscriber (A)**, tetapi jika kita membuat **1 subsciber (B)** lagi, maka yang terjadi adalah **subsriber (A)** akan menghandle data (message) dari **publisher (A)** dan **subscriber (B)** akan menghandle data (message) dari **subscriber (B)**, begitu juga seterusnya.
+**RabbitMQ** adalah salah satu platform open source message broker terpopuler selain Kafka, yang dimana RabbitMQ itu sendiri di tulis dengan bahasa pemerograman **Erlang**, RabbitMQ juga menggunakan protokol antrian seperti AMQP (advanced message query protocol) sebagai default protokolnya, RabbitMQ sendiri untuk pemerosesan queue nya menggunakan metode **First In First Out (FIFO)** yang berarti data (message) yang peratamakali masuk akan di tambahkan dan data (message) yang pertamakali masuk juga akan pertamakali keluar, oh iya RabitMQ juga menerapkan **Load Balancer** by default menggunakan **algorithm round robin**, contoh jika kita mempunya 2 publisher dan memiliki 1 **subsriber (A)**, maka semua data (message) akan di konsum oleh **subscriber (A)**, tetapi jika kita membuat **1 subsciber (B)** lagi, maka yang terjadi adalah **subsriber (A)** akan menghandle data (message) dari **publisher (A)** dan **subscriber (B)** akan menghandle data (message) dari **subscriber (B)**, begitu juga seterusnya.
 
   **Brokers** adalah seorang maintener yang bertugas untuk memelihara dan mengontrol setiap process keluar dan masuknya data (message) dari exchange, routing dan queue.
 
