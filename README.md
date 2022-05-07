@@ -14,7 +14,7 @@
 
 # What is RabbitMQ ?
 
-**RabbitMQ** adalah salah satu platform open source message broker terpopuler selain Kafka, yang dimana RabbitMQ itu sendiri di tulis dengan bahasa pemerograman **Erlang**, RabbitMQ juga menggunakan protokol antrian seperti AMQP (advanced message query protocol) sebagai default protokolnya, RabbitMQ sendiri untuk pemerosesan queue nya menggunakan metode **First In First Out (FIFO)** yang berarti data (message) yang peratamakali masuk akan di tambahkan dan data (message) yang pertamakali masuk juga akan pertamakali keluar, oh iya RabitMQ juga menerapkan **Load Balancer** by default menggunakan **algorithm round robin**, contoh jika kita mempunya 2 publisher dan memiliki 1 **subsriber (A)**, maka semua data (message) akan di konsum oleh **subscriber (A)**, tetapi jika kita membuat **1 subsciber (B)** lagi, maka yang terjadi adalah **subsriber (A)** akan menghandle data (message) dari **publisher (A)** dan **subscriber (B)** akan menghandle data (message) dari **subscriber (B)**, begitu juga seterusnya.
+**RabbitMQ** adalah salah satu platform open source message broker terpopuler selain Kafka, yang dimana RabbitMQ itu sendiri di tulis dengan bahasa pemerograman **Erlang**, RabbitMQ juga menggunakan protokol antrian seperti AMQP (advanced message query protocol) sebagai default protokolnya, RabbitMQ sendiri untuk pemerosesan queue nya menggunakan metode **First In First Out (FIFO)** yang berarti data (message) yang peratamakali masuk akan di tambahkan dan data (message) yang pertamakali masuk juga akan pertamakali keluar, oh iya RabitMQ juga menerapkan **Load Balancer** by default menggunakan **algorithm round robin**, contoh jika kita mempunya 2 publisher dan memiliki 1 **subsriber (A)**, maka semua data (message) akan di konsum oleh **subscriber (A)**, tetapi jika kita membuat **1 subsciber (B)** lagi, maka yang terjadi adalah **subsriber (A)** akan menghandle data (message) dari **publisher (A)** dan **subscriber (B)** akan menghandle data (message) dari **publisher (B)**, begitu juga seterusnya.
 
   **Brokers** adalah seorang maintener yang bertugas untuk memelihara dan mengontrol setiap process keluar dan masuknya data (message) dari exchange, routing dan queue.
 
@@ -40,17 +40,17 @@
 
      - **features**: adalah untuk menunjukan konfigurasi apa saja yang diterapkan oleh exchange, contoh anda bisa menambahkan konfigurasi durable ke true yang dimana exchange akan tetap ada walapun servernya crash sekalipun.
 
-     - **type**: adalah sebuah action bagaimana cara exchange dapat memproses sebuah data, yang akan dikirim ke sebuah queue.
+     - **type**: adalah sebuah action bagaimana cara exchange dapat memproses sebuah data (message), yang akan dikirim ke sebuah queue.
 
    - ### Exchange Type
 
-     - **Direct**: digunakan untuk meneruskan ke data ke satu queue berdasarkan routing keys yang telah di tentukan example -> `a.b.c`, tetapi tidak support wildcard patter seperti type topic.
+     - **Direct**: digunakan untuk meneruskan ke data (message) ke satu queue berdasarkan routing keys yang telah di tentukan example -> `a.b.c`, tetapi tidak support wildcard patter seperti type topic.
 
-     - **Fanout**: digunakan untuk meneruskan data ke semua queue yang ada tanpa menentukan routing keys, tetapi juga bisa meneruskan data dengan menggunakan routing keys, tetapi akan sama saja seperti tidak menggunakan routing keys, karena akan meneruskan data ke semua queue juga yang telah di binding di exchange.
+     - **Fanout**: digunakan untuk meneruskan data (message) ke semua queue yang ada tanpa menentukan routing keys, tetapi juga bisa meneruskan data (message) dengan menggunakan routing keys, tetapi akan sama saja seperti tidak menggunakan routing keys, karena akan meneruskan data (message) ke semua queue juga yang telah di binding di exchange.
 
-     - **Topic**: digunakan untuk meneruskan data ke semua queue dengan menggunakan wildcard pattern * or # example -> `*.b.* or b.#` atau bisa juga tanpa  menggunakan wildcard pattern seperti type direct, tetapi hanya meneruskan data ke satu queue saja.
+     - **Topic**: digunakan untuk meneruskan data (message) ke semua queue dengan menggunakan wildcard pattern * or # example -> `*.b.* or b.#` atau bisa juga tanpa  menggunakan wildcard pattern seperti type direct, tetapi hanya meneruskan data (message) ke satu queue saja.
 
-     - **Headers**: digunakan untuk meneruskan data ke semua queue berdasarkan routing keys yang telah di tentukan example -> `queue=a, queue, a` atau tanpa menggunakan routing keys juga bisa sama seperti type fanout.
+     - **Headers**: digunakan untuk meneruskan data (message) ke semua queue berdasarkan routing keys yang telah di tentukan example -> `queue=a, queue, a` atau tanpa menggunakan routing keys juga bisa sama seperti type fanout.
 
 - ### What is Queue ?
 
@@ -85,6 +85,6 @@
 
 - # RabbitMQ Ack Model
 
-   - **acknowledge**: sebuah data akan di check terlebih dahulu oleh server, apakah data tersebut akan disetujui oleh server untuk di process, tetapi data tersebut akan hilang dari queue setelah data tersebut di **konsumsi (subscribe)**, gunakan ini ketika anda melakukan subscribe.
+   - **acknowledge**: sebuah data akan di check terlebih dahulu oleh server, apakah data (message) tersebut akan disetujui oleh server untuk di process, tetapi data (message) tersebut akan hilang dari queue setelah data (message) tersebut di **konsumsi (subscribe)**, gunakan ini ketika anda melakukan subscribe.
 
-   - **noacknowledge**: sebuah data tidak akan di check terlebih dahulu oleh server, yang berarti data tesebut bisa langsung di process, tetapi data tersebut akan selalu didaftarkan kembali kedalam queue, setiap kali data itu akan di **konsumsi (subscribe)**, gunakan ini ketika anda melakukan publish.
+   - **noacknowledge**: sebuah data (message) tidak akan di check terlebih dahulu oleh server, yang berarti data (message) tesebut bisa langsung di process, tetapi data (message) tersebut akan selalu didaftarkan kembali kedalam queue, setiap kali data (message) itu akan di **konsumsi (subscribe)**, gunakan ini ketika anda melakukan publish.
